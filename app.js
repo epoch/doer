@@ -16,11 +16,23 @@ var addTodo = function() {
 addBtn.addEventListener('click', addTodo);
 
 todoList.addEventListener('click', function(event) {
-  console.log('someone click on you or on your children');
-  console.log(event.target);
 
   if (event.target.tagName === 'LI') {
-    event.target.className = 'done';
+
+    // find out the text in the LI that the user clicked on
+
+    // create new LI elemenent with the text
+    var doneLI = document.createElement('li');
+    doneLI.className = 'done';
+    var newContent = document.createTextNode(event.target.textContent);
+    doneLI.appendChild(newContent);    
+
+    // append it to done-list
+    document.querySelector('#done-list').appendChild(doneLI);
+
+    // remove the orig LI or the LI that the user clicked on
+    todoList.removeChild(event.target);
+
   }
 })
 
