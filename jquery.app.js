@@ -1,6 +1,5 @@
 console.log('jquery version of doer');
 
-
 // $ is a naming convention
 var $newTodoInput = $('#new-todo-input');
 var $addBtn = $('#add-btn');
@@ -19,7 +18,17 @@ var addTodo = function() {
 
 $addBtn.on('click', addTodo);
 
-$todoList.on('click', function() {
-  console.log('sdfsdfsdfsdf')
+$todoList.on('click', 'li', function(event) {
+  
+  // create new LI
+  var $doneLI = $('<li>')
+    .addClass('done')
+    .text(event.target.textContent);
+
+  // append to done UL
+  $doneList.append( $doneLI );
+
+  // remove exist LI
+  $(event.target).remove();
 });
 
